@@ -1,0 +1,9 @@
+msgid "test"
+msgstr "EN: This is a test"
+
+# comment
+
+msgid "test2"
+# comment
+msgstr "EN: Another \"test\""
+

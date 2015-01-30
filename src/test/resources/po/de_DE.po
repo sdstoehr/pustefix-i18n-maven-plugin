@@ -1,0 +1,13 @@
+msgid "test"
+msgstr "This is a test"
+
+# comment
+# comment
+
+msgid "test2"
+# comment
+msgstr "Another \"test\""
+
+msgid "te\\\"st"
+msgstr ""
+
