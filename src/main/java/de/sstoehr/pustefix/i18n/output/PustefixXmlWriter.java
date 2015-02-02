@@ -107,6 +107,7 @@ public class PustefixXmlWriter extends AbstractWriter {
             TransformerFactory transFactory = TransformerFactory.newInstance();
             Transformer transformer  = transFactory.newTransformer();
             transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+            transformer.setOutputProperty(OutputKeys.STANDALONE, "yes");
             transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "2");
 
             transformer.transform(source, result);
