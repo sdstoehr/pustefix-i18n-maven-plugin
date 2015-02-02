@@ -14,6 +14,12 @@ import org.apache.maven.project.MavenProject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import de.sstoehr.pustefix.i18n.convert.Converter;
+import de.sstoehr.pustefix.i18n.input.PoReader;
+import de.sstoehr.pustefix.i18n.input.Reader;
+import de.sstoehr.pustefix.i18n.output.PustefixXmlWriter;
+import de.sstoehr.pustefix.i18n.output.Writer;
+
 @Mojo(name = "convert", defaultPhase = LifecyclePhase.GENERATE_RESOURCES, requiresProject = true)
 public class PustefixI18nMojo extends AbstractMojo {
 
@@ -31,6 +37,18 @@ public class PustefixI18nMojo extends AbstractMojo {
     @Override
     public void execute() throws MojoExecutionException, MojoFailureException {
 
+        Reader reader = new PoReader();
+        Writer writer = new PustefixXmlWriter();
+
+        Converter converter = new Converter(reader, writer);
+
+        for (Locale locale : locales) {
+            de.sstoehr.pustefix.i18n.model.Locale l = new de.sstoehr.pustefix.i18n.model.Locale(locale.getLocale());
+
+            converter.addLocale(l, locale.getPoFile(), outputFile);
+        }
+
+        converter.convert();
     }
 
 }

@@ -49,8 +49,4 @@ public class MessageTranslation {
         return result;
     }
 
-    @Override
-    public String toString() {
-        return translation + " (" + locale + ")";
-    }
 }
