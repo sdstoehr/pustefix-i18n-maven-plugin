@@ -8,8 +8,8 @@ import de.sstoehr.pustefix.i18n.model.Message;
 
 public interface Reader {
 
-    public void addLocale(Locale locale, File file);
+    void addLocale(Locale locale, File file);
 
-    public List<Message> read();
+    List<Message> read();
 
 }
