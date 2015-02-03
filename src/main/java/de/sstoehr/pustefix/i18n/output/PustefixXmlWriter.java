@@ -63,7 +63,7 @@ public class PustefixXmlWriter extends AbstractWriter {
         DocumentBuilder db = dbf.newDocumentBuilder();
         Document doc =  db.newDocument();
 
-        Element root = doc.createElement("include_part");
+        Element root = doc.createElement("include_parts");
         doc.appendChild(root);
 
         Comment comment = doc.createComment("This file is generated. Do not edit manually.");

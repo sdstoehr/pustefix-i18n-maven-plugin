@@ -58,7 +58,7 @@ public class PustefixXmlWriterTest {
         String file2 = FileUtils.readFileToString(f2);
 
         Assert.assertEquals("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>\n"
-          + "<include_part>\n"
+          + "<include_parts>\n"
           + "  <!--This file is generated. Do not edit manually.-->\n"
           + "  <part name=\"m1\">\n"
           + "    <theme lang=\"l1\" name=\"default\">m1l1</theme>\n"
@@ -73,9 +73,9 @@ public class PustefixXmlWriterTest {
           + "    <theme lang=\"l1\" name=\"default\">m3l1</theme>\n"
           + "    <theme name=\"default\"/>\n"
           + "  </part>\n"
-          + "</include_part>\n", file1);
+          + "</include_parts>\n", file1);
         Assert.assertEquals("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>\n"
-          + "<include_part>\n"
+          + "<include_parts>\n"
           + "  <!--This file is generated. Do not edit manually.-->\n"
           + "  <part name=\"m1\">\n"
           + "    <theme lang=\"l3\" name=\"default\">m1l3</theme>\n"
@@ -88,7 +88,7 @@ public class PustefixXmlWriterTest {
           + "  <part name=\"m3\">\n"
           + "    <theme name=\"default\"/>\n"
           + "  </part>\n"
-          + "</include_part>\n", file2);
+          + "</include_parts>\n", file2);
     }
 
 }
