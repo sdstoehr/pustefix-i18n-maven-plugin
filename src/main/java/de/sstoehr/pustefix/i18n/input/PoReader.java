@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 import java.io.StringReader;
+import java.nio.charset.Charset;
 import java.util.Map;
 
 import org.apache.commons.io.FileUtils;
@@ -22,11 +23,21 @@ public class PoReader extends AbstractReader {
     private static final String MSGID = "msgid";
     private static final String MSGSTR = "msgstr";
 
+    private final Charset charset;
+
+    public PoReader(Charset charset) {
+        this.charset = charset;
+    }
+
+    public PoReader() {
+        this(Charset.defaultCharset());
+    }
+
     @Override
     void readSingle(Locale locale, File file, Map<String, Message> messages) {
 
         try {
-            String content = FileUtils.readFileToString(file);
+            String content = FileUtils.readFileToString(file, charset);
 
             BufferedReader reader = new BufferedReader(new StringReader(content));
 

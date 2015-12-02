@@ -6,7 +6,7 @@ msgstr "This is a test"
 
 msgid "test2"
 # comment
-msgstr "Another \"test\""
+msgstr "Another \"test äöü\""
 
 msgid "te\\\"st"
 msgstr ""

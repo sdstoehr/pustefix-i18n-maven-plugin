@@ -1,8 +1,10 @@
 package de.sstoehr.pustefix.i18n.output;
 
 import java.io.File;
-import java.io.FileWriter;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -27,6 +29,16 @@ import de.sstoehr.pustefix.i18n.model.Message;
 import de.sstoehr.pustefix.i18n.model.MessageTranslation;
 
 public class PustefixXmlWriter extends AbstractWriter {
+
+    private final Charset charset;
+
+    public PustefixXmlWriter(Charset charset) {
+        this.charset = charset;
+    }
+
+    public PustefixXmlWriter() {
+        this(Charset.defaultCharset());
+    }
 
     @Override
     public void write(List<Message> messages) {
@@ -100,7 +112,9 @@ public class PustefixXmlWriter extends AbstractWriter {
             parent.mkdirs();
         }
 
-        try (FileWriter writer = new FileWriter(outputFile)) {
+        try (
+            FileOutputStream fos = new FileOutputStream(outputFile);
+            java.io.Writer writer = new OutputStreamWriter(fos, charset)) {
             StreamResult result = new StreamResult(writer);
             DOMSource source = new DOMSource(doc);
 

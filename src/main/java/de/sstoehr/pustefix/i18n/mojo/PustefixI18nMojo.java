@@ -1,6 +1,7 @@
 package de.sstoehr.pustefix.i18n.mojo;
 
 import java.io.File;
+import java.nio.charset.Charset;
 import java.util.List;
 
 import org.apache.maven.plugin.AbstractMojo;
@@ -31,14 +32,19 @@ public class PustefixI18nMojo extends AbstractMojo {
     @Parameter(required = true, defaultValue = "${project.build.directory}/${project.build.finalName}/txt/meta/i18n.xml")
     private File outputFile;
 
+    @Parameter(required = true, defaultValue = "UTF-8")
+    private String charsetName;
+
     @Component
     private MavenProject project;
 
     @Override
     public void execute() throws MojoExecutionException, MojoFailureException {
 
-        Reader reader = new PoReader();
-        Writer writer = new PustefixXmlWriter();
+        Charset charset = Charset.forName(charsetName);
+
+        Reader reader = new PoReader(charset);
+        Writer writer = new PustefixXmlWriter(charset);
 
         Converter converter = new Converter(reader, writer);
 

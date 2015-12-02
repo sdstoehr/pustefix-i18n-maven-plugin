@@ -3,6 +3,7 @@ package de.sstoehr.pustefix.i18n.input;
 import java.io.File;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.nio.charset.Charset;
 import java.util.Arrays;
 import java.util.List;
 
@@ -18,7 +19,7 @@ public class PoReaderTest {
     @Test
     public void test() throws URISyntaxException {
 
-        Reader reader = new PoReader();
+        Reader reader = new PoReader(Charset.forName("UTF-8"));
 
         Locale l1 = new Locale("de_DE");
         Locale l2 = new Locale("en_GB");
@@ -44,7 +45,7 @@ public class PoReaderTest {
         );
 
         List<MessageTranslation> m1t = Arrays.asList(
-          new MessageTranslation(l1, "Another \"test\""),
+          new MessageTranslation(l1, "Another \"test äöü\""),
           new MessageTranslation(l2, "EN: Another \"test\"")
         );
 

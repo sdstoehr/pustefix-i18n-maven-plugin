@@ -2,6 +2,7 @@ package de.sstoehr.pustefix.i18n.writer;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,11 +43,15 @@ public class PustefixXmlWriterTest {
         Message m3 = new Message("m3");
         m3.add(new MessageTranslation(l1, "m3l1"));
 
+        Message m4 = new Message("m4");
+        m4.add(new MessageTranslation(l1, "äöü"));
+
         messages.add(m1);
         messages.add(m2);
         messages.add(m3);
+        messages.add(m4);
 
-        Writer writer = new PustefixXmlWriter();
+        Writer writer = new PustefixXmlWriter(Charset.forName("UTF-8"));
 
         writer.addLocale(l1, f1);
         writer.addLocale(l2, f1);
@@ -73,6 +78,10 @@ public class PustefixXmlWriterTest {
           + "    <theme lang=\"l1\" name=\"default\">m3l1</theme>\n"
           + "    <theme name=\"default\"/>\n"
           + "  </part>\n"
+          + "  <part name=\"m4\">\n"
+          + "    <theme lang=\"l1\" name=\"default\">äöü</theme>\n"
+          + "    <theme name=\"default\"/>\n"
+          + "  </part>\n"
           + "</include_parts>\n", file1);
         Assert.assertEquals("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>\n"
           + "<include_parts>\n"
@@ -86,6 +95,9 @@ public class PustefixXmlWriterTest {
           + "    <theme name=\"default\"/>\n"
           + "  </part>\n"
           + "  <part name=\"m3\">\n"
+          + "    <theme name=\"default\"/>\n"
+          + "  </part>\n"
+          + "  <part name=\"m4\">\n"
           + "    <theme name=\"default\"/>\n"
           + "  </part>\n"
           + "</include_parts>\n", file2);
